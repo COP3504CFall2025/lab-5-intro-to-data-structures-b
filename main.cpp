@@ -1,5 +1,4 @@
 #ifdef MAIN
-
 #include "ABDQ.hpp"
 #include "ABQ.hpp"
 #include "ABS.hpp"
@@ -15,11 +14,10 @@
     - Test your code in this main and run locally with the RunMain configuration in CLion, or
     through your own command line compilation. Make sure to add flag "-DMAIN" to your compilation so this
     main function can compile.
-
 */
 
-int main() {
-
+int main()
+{
 
     return 0;
 }

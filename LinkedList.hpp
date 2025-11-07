@@ -2,24 +2,70 @@
 #include <iostream>
 using namespace std;
 
+template <typename T>
+struct Node
+{
+    T data;
+    Node<T>* prev;
+    Node<T>* next;
 
+    Node(const T& value) : data(value), prev(nullptr), next(nullptr) {}
+};
 
 template <typename T>
-class LinkedList {
+class LinkedList
+{
 public:
 	// Behaviors
-	void printForward() const;
-	void printReverse() const;
+	void printForward() const
+    {
+        Node<T>* current = head;
+        for(int i = 0; i < count; i++)
+        {
+            std::cout << *current << std::endl;
+            current = current->next;
+        }
+    }
+	void printReverse() const
+    {
+        Node<T>* current = tail;
+        for(int i = 0; i < count; i++)
+        {
+            std::cout << *current << std::endl;
+            current = current->next;
+        }
+    }
 
 	// Accessors
-	[[nodiscard]] unsigned int getCount() const;
-	Node* getHead();
-	const Node* getHead() const;
-	Node* getTail();
-	const Node* getTail() const;
+	[[nodiscard]] unsigned int getCount() const
+    {
+        return count;
+    }
+	Node<T>* getHead()
+    {
+        return head;
+    }
+	const Node<T>* getHead() const
+    {
+        return head;
+    }
+	Node<T>* getTail()
+    {
+        return tail;
+    }
+	const Node<T>* getTail() const
+    {
+        return tail;
+    }
 
 	// Insertion
-	void addHead(const T& data);
+	void addHead(const T& data)
+    {
+        Node<T>* temp = new Node<T>;
+        *temp->data = data;
+        *temp->next = head;
+        head = temp;
+    }
 	void addTail(const T& data);
 
 	// Removal
@@ -27,7 +73,7 @@ public:
 	bool removeTail();
 	void Clear();
 
-	// Operators
+	// Move/Copy Assignment Operators
 	LinkedList<T>& operator=(LinkedList<T>&& other) noexcept;
 	LinkedList<T>& operator=(const LinkedList<T>& rhs);
 
@@ -39,10 +85,7 @@ public:
 
 private:
 	// Stores pointers to first and last nodes and count
-	Node* head;
-	Node* tail;
+	Node<T>* head;
+	Node<T>* tail;
 	unsigned int count;
-
 };
-
-
