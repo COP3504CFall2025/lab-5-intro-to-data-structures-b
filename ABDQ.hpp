@@ -155,6 +155,7 @@ public:
         T returnValue = data_[front_];
 
         front_ = (front_ + 1 + capacity_) % capacity_;
+        size_--;
 
         return returnValue;
     }
@@ -168,6 +169,7 @@ public:
         T returnValue = data_[(back_ - 1 + capacity_) % capacity_];
 
         back_ = (front_ - 1 + capacity_) % capacity_;
+        size_--;
 
         return returnValue;
     }
