@@ -19,11 +19,69 @@ public:
     // Constructors + Big 5
     ABQ() : capacity_(1), curr_size_(0), array_(new T[capacity_]) {}
     explicit ABQ(const size_t capacity) : capacity_(capacity), curr_size_(0), array_(new T[capacity_]) {}
-    ABQ(const ABQ& other);
-    ABQ& operator=(const ABQ& rhs);
-    ABQ(ABQ&& other) noexcept;
-    ABQ& operator=(ABQ&& rhs) noexcept;
-    ~ABQ() noexcept override;
+    //copy constructor
+    ABQ(const ABQ& other) : capacity_(other.capacity_), curr_size_(other.curr_size_), array_(new T[other.capacity_])
+    {
+        for(size_t i = 0; i < other.curr_size_; i++)
+        {
+            array_[i] = other.array_[i];
+        }
+    }
+    //copy assignment operator
+    ABQ& operator=(const ABQ& rhs)
+    {
+        if(this == &rhs)
+        {
+            return *this;
+        }
+
+        delete[] this->array_;
+        this->array_ = new T[rhs.capacity_];
+
+        this->capacity_ = rhs.capacity_;
+        this->curr_size_ = rhs.curr_size_;
+
+        for(size_t i = 0; i < rhs.curr_size_; i++)
+        {
+            array_[i] = rhs.array_[i];
+        }
+
+        return *this;
+    }
+    //move constructor
+    ABQ(ABQ&& other) noexcept  : capacity_(other.capacity_), curr_size_(other.curr_size_), array_(other.array_)
+    {
+        other.capacity_ = 0;
+        other.curr_size_ = 0;
+        other.array_ = nullptr;
+    }
+    //move assignment operator
+    ABQ& operator=(ABQ&& rhs) noexcept
+    {
+        if (this == &rhs)
+        {
+            return *this;
+        }
+
+        delete[] this->array_;
+
+        this->array_ = rhs.array_;
+        this->capacity_ = rhs.capacity_;
+        this->curr_size_ = rhs.curr_size_;
+
+        rhs.capacity_ = 0;
+        rhs.curr_size_ = 0;
+        rhs.array_ = nullptr;
+
+        return *this;
+    }
+    ~ABQ() noexcept override
+    {
+        capacity_ = 0;
+        curr_size_ = 0;
+        delete[] array_;
+        array_ = nullptr;
+    }
 
     // Getters
     [[nodiscard]] size_t getSize() const noexcept override
