@@ -114,6 +114,7 @@ public:
         Node<T>* temp = head->next;
         delete head;
         head = temp;
+        head->prev = nullptr;
         count--;
 
         return 1;
@@ -137,6 +138,7 @@ public:
         Node<T>* temp = tail->prev;
         delete tail;
         tail = temp;
+        tail->next = nullptr;
         count--;
 
         return 1;
