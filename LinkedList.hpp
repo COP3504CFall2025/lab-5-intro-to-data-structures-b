@@ -206,6 +206,7 @@ public:
         for(size_t i = 0; i < this->count; i++)
         {
             AddTail(current->data);
+            current = current->next;
         }
     }
 	LinkedList(LinkedList<T>&& other) noexcept : head(other.head), tail(other.tail), count(other.count)
