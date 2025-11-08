@@ -107,6 +107,7 @@ public:
             delete head;
             head = nullptr;
             tail = nullptr;
+            count--;
             return 1;
         }
 
@@ -129,6 +130,7 @@ public:
             delete tail;
             head = nullptr;
             tail = nullptr;
+            count--;
             return 1;
         }
 
@@ -152,6 +154,7 @@ public:
         }
         head = nullptr;
         tail = nullptr;
+        count = 0;
     }
 
 	// Move/Copy Assignment Operators
