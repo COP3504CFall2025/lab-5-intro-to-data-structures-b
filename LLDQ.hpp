@@ -48,7 +48,7 @@ public:
         }
 
         T returnValue = list.getTail()->data;
-        list.getTail();
+        list.removeTail();
 
         return returnValue;
     }
