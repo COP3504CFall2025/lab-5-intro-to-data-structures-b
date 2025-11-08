@@ -23,7 +23,7 @@ int main()
     list.addTail(2);
     list.addTail(3);
     list.addTail(4);
-    list.addHead(1);
+    list.AddHead(1);
 
     return 0;
 }

@@ -24,7 +24,7 @@ public:
             current = current->next;
         }
     }
-	void printReverse() const
+	void PrintReverse() const
     {
         Node<T>* current = tail;
         for(size_t i = 0; i < count; i++)
@@ -75,7 +75,7 @@ public:
         head = temp;
         count++;
     }
-	void addTail(const T& data)
+	void AddTail(const T& data)
     {
         Node<T>* temp = new Node<T>;
         temp->data = data;
@@ -95,7 +95,7 @@ public:
     }
 
 	// Removal
-	bool removeHead()
+	bool RemoveHead()
     {
         if(count == 0)
         {
@@ -116,7 +116,7 @@ public:
 
         return 1;
     }
-	bool removeTail()
+	bool RemoveTail()
     {
         if(count == 0)
         {
@@ -155,7 +155,7 @@ public:
 	// Move/Copy Assignment Operators
 	LinkedList<T>& operator=(LinkedList<T>&& other) noexcept
     {
-        if(this == other)
+        if(this == &other)
         {
             return *this;
         }
@@ -184,7 +184,7 @@ public:
         this->count = rhs.count;
         this->head = new Node<T>;
         Node<T>* current = rhs.head;
-        for(int i = 0; i < this->count; i++)
+        for(size_t i = 0; i < this->count; i++)
         {
             addTail(current->data);
         }
@@ -198,7 +198,7 @@ public:
     {
         this->head = new Node<T>;
         Node<T>* current = list.head;
-        for(int i = 0; i < this->count; i++)
+        for(size_t i = 0; i < this->count; i++)
         {
             addTail(current->data);
         }
