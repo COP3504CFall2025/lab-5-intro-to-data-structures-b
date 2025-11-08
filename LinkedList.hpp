@@ -57,7 +57,7 @@ public:
     }
 
 	// Insertion
-	void addHead(const T& data)
+	void AddHead(const T& data)
     {
         Node<T>* temp = new Node<T>;
         temp->data = data;
