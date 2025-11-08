@@ -188,12 +188,13 @@ public:
 
         this->~LinkedList();
 
-        this->count = rhs.count;
+        this->count = 0;
         this->head = new Node<T>;
         Node<T>* current = rhs.head;
-        for(size_t i = 0; i < this->count; i++)
+        for(size_t i = 0; i < rhs.count; i++)
         {
             AddTail(current->data);
+            current = current->next;
         }
 
         return *this;
@@ -205,6 +206,7 @@ public:
     {
         this->head = new Node<T>;
         Node<T>* current = list.head;
+
         this->count = 0;
         for(size_t i = 0; i < list.count; i++)
         {
