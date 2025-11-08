@@ -144,7 +144,7 @@ public:
     {
         Node<T>* current = head;
         Node<T>* next = nullptr;
-        for(size_t i = 0; i < count; i++)
+        while(current != nullptr)
         {
             next = current->next;
             delete current;
