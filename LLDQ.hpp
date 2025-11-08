@@ -15,22 +15,59 @@ private:
 
 public:
     // Constructor
-    LLDQ();
+    LLDQ() : list() {}
 
     // Core Insertion Operations
-    void pushFront(const T& item) override;
-    void pushBack(const T& item) override;
+    void pushFront(const T& item) override
+    {
+        list.addHead(item);
+    }
+    void pushBack(const T& item) override
+    {
+        list.addTail(item);
+    }
 
     // Core Removal Operations
-    T popFront() override;
-    T popBack() override;
+    T popFront() override
+    {
+        if(list.getCount() == 0)
+        {
+            throw std::runtime_error("Linked-List Deque is empty.");
+        }
+
+        T returnValue = list.getHead()->data;
+        list.removeHead();
+
+        return returnValue;
+    }
+    T popBack() override
+    {
+        if(list.getCount() == 0)
+        {
+            throw std::runtime_error("Linked-List Deque is empty.");
+        }
+
+        T returnValue = list.getTail()->data;
+        list.getTail();
+
+        return returnValue;
+    }
 
     // Element Accessors
-    const T& front() const override;
-    const T& back() const override;
+    const T& front() const override
+    {
+        return list.getHead();
+    }
+    const T& back() const override
+    {
+        return list.getTail();
+    }
 
     // Getter
-    std::size_t getSize() const noexcept override;
+    std::size_t getSize() const noexcept override
+    {
+        return list.getCount();
+    }
 };
 
 
