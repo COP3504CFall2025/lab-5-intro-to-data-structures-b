@@ -168,6 +168,8 @@ public:
                 return returnValue;
             }
 
+            T returnvalue = array_[0];
+
             T* temp = new T[capacity_];
             for(size_t i = 1; i < curr_size_; i++)
             {
@@ -178,7 +180,7 @@ public:
             array_ = temp;
             temp = nullptr;
 
-            return array_[0];
+            return returnvalue;
         }
     }
 
