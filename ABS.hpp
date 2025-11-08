@@ -11,8 +11,8 @@ template<typename T>
 class ABS : public StackInterface<T> {
 public:
     // Big 5 + Parameterized Constructor
-    ABS() : capacity_(1), curr_size_(0), array_(new T[capacity_]) {}
-    explicit ABS(const size_t capacity) : capacity_(capacity), curr_size_(0), array_(new T[capacity_]) {}
+    ABS() : curr_size_(0), capacity_(1), array_(new T[capacity_]) {}
+    explicit ABS(const size_t capacity) : curr_size_(0), capacity_(capacity), array_(new T[capacity_]) {}
     //copy constructor
     ABS(const ABS& other) : curr_size_(other.curr_size_), capacity_(other.capacity_), array_(new T[other.capacity_])
     {
@@ -43,7 +43,7 @@ public:
         return *this;
     }
     //move constructor
-    ABS(ABS&& other) noexcept : array_(other.array_), curr_size_(other.curr_size_), capacity_(other.capacity_)
+    ABS(ABS&& other) noexcept : curr_size_(other.curr_size_), capacity_(other.capacity_), array_(other.array_)
     {
         other.capacity_ = 0;
         other.curr_size_ = 0;
