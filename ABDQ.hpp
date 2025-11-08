@@ -24,9 +24,9 @@ public:
     //copy constructor
     ABDQ(const ABDQ& other) : data_(new T[other.capacity_]), capacity_(other.capacity_), size_(other.size_), front_(other.front_), back_(other.front_)
     {
-        for(size_t i = 0; i < other.size_; i++)
+        for(size_t i = 0; i < size_; i++)
         {
-            this->data_[i] = other.data_[i];
+            data_[i] = other.data_[(front_ + i) % size_];
         }
     }
 
@@ -56,9 +56,9 @@ public:
         this->front_ = other.front_;
         this->back_ = other.back_;
 
-        for(size_t i = 0; i < other.size_; i++)
+        for(size_t i = 0; i < size_; i++)
         {
-            this->data_[i] = other.data_[i];
+            this->data_[i] = other.data_[(front_ + i) % size_];
         }
 
         return *this;
@@ -131,7 +131,7 @@ public:
             T* temp = new T[capacity_];
             for(size_t i = 0; i < size_; i++)
             {
-                temp[i] = data_[(front_ + i) % size_];
+                temp[i] = data_[(front_ + i) % (capacity_/SCALE_FACTOR)];
             }
 
             delete[] data_;
@@ -140,7 +140,7 @@ public:
         }
 
         data_[back_] = item;
-        back_ = (back_ - 1 + capacity_) % capacity_;
+        back_ = (back_ + 1) % capacity_;
         size_++;
     }
 
