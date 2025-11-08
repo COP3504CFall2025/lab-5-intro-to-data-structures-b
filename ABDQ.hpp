@@ -17,17 +17,111 @@ private:
     static constexpr std::size_t SCALE_FACTOR = 2;
 
 public:
-    // Big 5
-    ABDQ();
-    explicit ABDQ(std::size_t capacity);
-    ABDQ(const ABDQ& other);
-    ABDQ(ABDQ&& other) noexcept;
-    ABDQ& operator=(const ABDQ& other);
-    ABDQ& operator=(ABDQ&& other) noexcept;
-    ~ABDQ() override;
+    //Constructors
+    ABDQ() : capacity_(4), size_(0), front_(0), back_(0), data_(new T[capacity_]) {}
+    explicit ABDQ(std::size_t capacity) : capacity_(capacity), size_(0), front_(0), back_(0), data_(new T[capacity_]) {}
+
+    //copy constructor
+    ABDQ(const ABDQ& other) : capacity_(other.capacity_), size_(other.size_), front_(other.front_), back_(other.front_), data_(new T[other.capacity_])
+    {
+        for(size_t i = 0; i < other.size_; i++)
+        {
+            this->data_[i] = other.data_[i];
+        }
+    }
+
+    //move constructor
+    ABDQ(ABDQ&& other) noexcept : capacity_(other.capacity_), size_(other.size_), front_(other.front_), back_(other.front_), data_(other.data_)
+    {
+        other.capacity_ = 0;
+        other.size_ = 0;
+        other.front_ = 0;
+        other.back_ = 0;
+        other.data_ = nullptr;
+    }
+
+    //copy assignment operator
+    ABDQ& operator=(const ABDQ& other)
+    {
+        if(this == &other)
+        {
+            return *this;
+        }
+
+        delete[] this->data_;
+        this->data_ = new T[other.capacity_];
+
+        this->capacity_ = other.capacity_;
+        this->size_ = other.size_;
+        this->front_ = other.front_;
+        this->back_ = other.back_;
+
+        for(size_t i = 0; i < other.size_; i++)
+        {
+            this->data_[i] = other.data_[i];
+        }
+
+        return *this;
+    }
+
+    //move assignment operator
+    ABDQ& operator=(ABDQ&& other) noexcept
+    {
+        if (this == &other)
+        {
+            return *this;
+        }
+
+        delete[] this->data_;
+
+        this->data_ = other.data_;
+        this->capacity_ = other.capacity_;
+        this->size_ = other.size_;
+        this->front_ = other.front_;
+        this->back_ = other.back_;
+
+        other.capacity_ = 0;
+        other.size_ = 0;
+        other.front_ = 0;
+        other.back_ = 0;
+        other.data_ = nullptr;
+
+        return *this;
+    }
+
+    //destructor
+    ~ABDQ() override
+    {
+        delete[] data_;
+        data_ = nullptr;
+        capacity_ = 0;
+        size_ = 0;
+        front_ = 0;
+        back_ = 0;
+    }
 
     // Insertion
-    void pushFront(const T& item) override;
+    void pushFront(const T& item) override
+    {
+        if(capacity_ == size_)
+        {
+            capacity_ *= SCALE_FACTOR;
+
+            T* temp = new T[capacity_];
+            for(size_t i = 0; i < size_; i++)
+            {
+                temp[i] = data_[(front_ + i) % size_];
+            }
+
+            delete[] data_;
+            data_ = temp;
+            temp = nullptr;
+        }
+
+        front_ = (front_ - 1 + capacity_) % capacity_;
+        data_[front_] = item;
+        size_++;
+    }
     void pushBack(const T& item) override;
 
     // Deletion
