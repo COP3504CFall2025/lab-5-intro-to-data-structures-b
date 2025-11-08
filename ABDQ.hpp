@@ -122,17 +122,52 @@ public:
         data_[front_] = item;
         size_++;
     }
-    void pushBack(const T& item) override;
+    void pushBack(const T& item) override
+    {
+        if(capacity_ == size_)
+        {
+            capacity_ *= SCALE_FACTOR;
+
+            T* temp = new T[capacity_];
+            for(size_t i = 0; i < size_; i++)
+            {
+                temp[i] = data_[(front_ + i) % size_];
+            }
+
+            delete[] data_;
+            data_ = temp;
+            temp = nullptr;
+        }
+
+        data_[back_] = item;
+        back_ = (back_ - 1 + capacity_) % capacity_;
+        size_++;
+    }
 
     // Deletion
-    T popFront() override;
-    T popBack() override;
+    T popFront() override
+    {
+
+    }
+    T popBack() override
+    {
+
+    }
 
     // Access
-    const T& front() const override;
-    const T& back() const override;
+    const T& front() const override
+    {
+        return data_[front_];
+    }
+    const T& back() const override
+    {
+        return data_[(back_ - 1 + capacity_) % capacity_];
+    }
 
     // Getters
-    std::size_t getSize() const noexcept override;
+    std::size_t getSize() const noexcept override
+    {
+        return size_;
+    }
 
 };
