@@ -116,6 +116,8 @@ public:
             delete[] data_;
             data_ = temp;
             temp = nullptr;
+            front_ = 0;
+            back_ = size_;
         }
 
         front_ = (front_ - 1 + capacity_) % capacity_;
@@ -137,6 +139,8 @@ public:
             delete[] data_;
             data_ = temp;
             temp = nullptr;
+            front_ = 0;
+            back_ = size_;
         }
 
         data_[back_] = item;
@@ -168,7 +172,7 @@ public:
 
         T returnValue = data_[(back_ - 1 + capacity_) % capacity_];
 
-        back_ = (front_ - 1 + capacity_) % capacity_;
+        back_ = (back_ - 1 + capacity_) % capacity_;
         size_--;
 
         return returnValue;
