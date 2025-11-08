@@ -205,6 +205,7 @@ public:
     {
         this->head = new Node<T>;
         Node<T>* current = list.head;
+        this->count = 0;
         for(size_t i = 0; i < this->count; i++)
         {
             AddTail(current->data);
