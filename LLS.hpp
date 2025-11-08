@@ -22,7 +22,7 @@ public:
     // Deletion
     T pop() override
     {
-        T returnValue = *list.getHead();
+        T returnValue = list.getHead()->data;
 
         if(list.removeHead() == 0)
         {
@@ -35,7 +35,12 @@ public:
     // Access
     T peek() const override
     {
-        return *list.getHead();
+        if(list.getCount() == 0)
+        {
+            throw std::runtime_error("Linked-List Stack is empty.");
+        }
+
+        return list.getHead()->data;
     }
 
     //Getters
