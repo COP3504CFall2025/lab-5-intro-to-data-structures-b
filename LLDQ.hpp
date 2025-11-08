@@ -61,7 +61,7 @@ public:
             throw std::runtime_error("Linked-List Deque is empty.");
         }
 
-        return list.getHead();
+        return list.getHead()->data;
     }
     const T& back() const override
     {
@@ -70,7 +70,7 @@ public:
             throw std::runtime_error("Linked-List Deque is empty.");
         }
 
-        return list.getTail();
+        return list.getTail()->data;
     }
 
     // Getter
