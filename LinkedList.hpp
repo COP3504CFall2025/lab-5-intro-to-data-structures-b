@@ -167,7 +167,7 @@ public:
             return *this;
         }
 
-        this->Clear();
+        this->clear();
 
         this->head = other.head;
         this->tail = other.tail;
@@ -186,7 +186,7 @@ public:
             return *this;
         }
 
-        this->Clear();
+        this->clear();
 
         this->count = 0;
         Node<T>* current = rhs.head;

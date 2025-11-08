@@ -133,6 +133,7 @@ public:
         else
         {
             curr_size_--;
+            return array_[curr_size_];
         }
     }
 
