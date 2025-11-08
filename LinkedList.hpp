@@ -167,7 +167,7 @@ public:
             return *this;
         }
 
-        this->~LinkedList();
+        this->Clear();
 
         this->head = other.head;
         this->tail = other.tail;
@@ -186,10 +186,9 @@ public:
             return *this;
         }
 
-        this->~LinkedList();
+        this->Clear();
 
         this->count = 0;
-        this->head = new Node<T>;
         Node<T>* current = rhs.head;
         for(size_t i = 0; i < rhs.count; i++)
         {
@@ -204,7 +203,6 @@ public:
 	LinkedList() : head(nullptr), tail(nullptr), count(0) {}
 	LinkedList(const LinkedList<T>& list) : head(nullptr), tail(nullptr), count(list.count)
     {
-        this->head = new Node<T>;
         Node<T>* current = list.head;
 
         this->count = 0;
