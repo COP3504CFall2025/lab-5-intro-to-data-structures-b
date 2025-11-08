@@ -24,7 +24,7 @@ public:
             current = current->next;
         }
     }
-	void PrintReverse() const
+	void printReverse() const
     {
         Node<T>* current = tail;
         for(size_t i = 0; i < count; i++)
@@ -57,7 +57,7 @@ public:
     }
 
 	// Insertion
-	void AddHead(const T& data)
+	void addHead(const T& data)
     {
         Node<T>* temp = new Node<T>;
         temp->data = data;
@@ -75,7 +75,7 @@ public:
         head = temp;
         count++;
     }
-	void AddTail(const T& data)
+	void addTail(const T& data)
     {
         Node<T>* temp = new Node<T>;
         temp->data = data;
@@ -95,7 +95,7 @@ public:
     }
 
 	// Removal
-	bool RemoveHead()
+	bool removeHead()
     {
         if(count == 0)
         {
@@ -119,7 +119,7 @@ public:
 
         return 1;
     }
-	bool RemoveTail()
+	bool removeTail()
     {
         if(count == 0)
         {
