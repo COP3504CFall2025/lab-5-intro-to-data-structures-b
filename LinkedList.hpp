@@ -18,19 +18,19 @@ public:
 	void printForward() const
     {
         Node<T>* current = head;
-        for(int i = 0; i < count; i++)
+        for(size_t i = 0; i < count; i++)
         {
-            std::cout << *current << std::endl;
+            std::cout << current->data << std::endl;
             current = current->next;
         }
     }
 	void printReverse() const
     {
         Node<T>* current = tail;
-        for(int i = 0; i < count; i++)
+        for(size_t i = 0; i < count; i++)
         {
-            std::cout << *current << std::endl;
-            current = current->next;
+            std::cout << current->data << std::endl;
+            current = current->prev;
         }
     }
 
@@ -59,7 +59,8 @@ public:
 	// Insertion
 	void addHead(const T& data)
     {
-        Node<T>* temp = new Node<T>(data);
+        Node<T>* temp = new Node<T>;
+        temp->data = data;
         temp->prev = nullptr;
         if(count == 0)
         {
@@ -72,10 +73,12 @@ public:
             head->prev = temp;
         }
         head = temp;
+        count++;
     }
 	void addTail(const T& data)
     {
-        Node<T>* temp = new Node<T>(data);
+        Node<T>* temp = new Node<T>;
+        temp->data = data;
         temp->next = nullptr;
         if(count == 0)
         {
@@ -88,6 +91,7 @@ public:
             tail->next = temp;
         }
         tail = temp;
+        count++;
     }
 
 	// Removal
@@ -137,8 +141,8 @@ public:
 	void Clear()
     {
         Node<T>* current = head;
-        Node<T>* next;
-        for(int i = 0; i < count; i++)
+        Node<T>* next = nullptr;
+        for(size_t i = 0; i < count; i++)
         {
             next = current->next;
             delete current;
