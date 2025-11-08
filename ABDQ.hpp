@@ -18,11 +18,11 @@ private:
 
 public:
     //Constructors
-    ABDQ() : capacity_(4), size_(0), front_(0), back_(0), data_(new T[capacity_]) {}
-    explicit ABDQ(std::size_t capacity) : capacity_(capacity), size_(0), front_(0), back_(0), data_(new T[capacity_]) {}
+    ABDQ() : data_(new T[capacity_]), capacity_(4), size_(0), front_(0), back_(0) {}
+    explicit ABDQ(std::size_t capacity) : data_(new T[capacity_]), capacity_(capacity), size_(0), front_(0), back_(0) {}
 
     //copy constructor
-    ABDQ(const ABDQ& other) : capacity_(other.capacity_), size_(other.size_), front_(other.front_), back_(other.front_), data_(new T[other.capacity_])
+    ABDQ(const ABDQ& other) : data_(new T[other.capacity_]), capacity_(other.capacity_), size_(other.size_), front_(other.front_), back_(other.front_)
     {
         for(size_t i = 0; i < other.size_; i++)
         {
@@ -31,7 +31,7 @@ public:
     }
 
     //move constructor
-    ABDQ(ABDQ&& other) noexcept : capacity_(other.capacity_), size_(other.size_), front_(other.front_), back_(other.front_), data_(other.data_)
+    ABDQ(ABDQ&& other) noexcept : data_(other.data_), capacity_(other.capacity_), size_(other.size_), front_(other.front_), back_(other.front_)
     {
         other.capacity_ = 0;
         other.size_ = 0;
@@ -147,20 +147,40 @@ public:
     // Deletion
     T popFront() override
     {
+        if(size_ == 0)
+        {
+            throw std::runtime_error("Array-Based Deque is empty.");
+        }
+
 
     }
     T popBack() override
     {
+        if(size_ == 0)
+        {
+            throw std::runtime_error("Array-Based Deque is empty.");
+        }
+
 
     }
 
     // Access
     const T& front() const override
     {
+        if(size_ == 0)
+        {
+            throw std::runtime_error("Array-Based Deque is empty.");
+        }
+
         return data_[front_];
     }
     const T& back() const override
     {
+        if(size_ == 0)
+        {
+            throw std::runtime_error("Array-Based Deque is empty.");
+        }
+
         return data_[(back_ - 1 + capacity_) % capacity_];
     }
 
