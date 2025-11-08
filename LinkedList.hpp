@@ -186,7 +186,7 @@ public:
         Node<T>* current = rhs.head;
         for(size_t i = 0; i < this->count; i++)
         {
-            addTail(current->data);
+            AddTail(current->data);
         }
 
         return *this;
@@ -200,7 +200,7 @@ public:
         Node<T>* current = list.head;
         for(size_t i = 0; i < this->count; i++)
         {
-            addTail(current->data);
+            AddTail(current->data);
         }
     }
 	LinkedList(LinkedList<T>&& other) noexcept : head(other.head), tail(other.tail), count(other.count)
