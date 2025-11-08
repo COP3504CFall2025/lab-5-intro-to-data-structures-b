@@ -152,7 +152,11 @@ public:
             throw std::runtime_error("Array-Based Deque is empty.");
         }
 
+        T returnValue = data_[front_];
 
+        front_ = (front_ + 1 + capacity_) % capacity_;
+
+        return returnValue;
     }
     T popBack() override
     {
@@ -161,7 +165,11 @@ public:
             throw std::runtime_error("Array-Based Deque is empty.");
         }
 
+        T returnValue = data_[(back_ - 1 + capacity_) % capacity_];
 
+        back_ = (front_ - 1 + capacity_) % capacity_;
+
+        return returnValue;
     }
 
     // Access
