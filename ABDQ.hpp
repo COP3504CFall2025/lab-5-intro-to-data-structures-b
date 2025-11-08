@@ -22,7 +22,7 @@ public:
     explicit ABDQ(std::size_t capacity) : data_(new T[capacity]), capacity_(capacity), size_(0), front_(0), back_(0) {}
 
     //copy constructor
-    ABDQ(const ABDQ& other) : data_(new T[other.capacity_]), capacity_(other.capacity_), size_(other.size_), front_(other.front_), back_(other.front_)
+    ABDQ(const ABDQ& other) : data_(new T[other.capacity_]), capacity_(other.capacity_), size_(other.size_), front_(other.front_), back_(other.back_)
     {
         for(size_t i = 0; i < size_; i++)
         {
@@ -31,7 +31,7 @@ public:
     }
 
     //move constructor
-    ABDQ(ABDQ&& other) noexcept : data_(other.data_), capacity_(other.capacity_), size_(other.size_), front_(other.front_), back_(other.front_)
+    ABDQ(ABDQ&& other) noexcept : data_(other.data_), capacity_(other.capacity_), size_(other.size_), front_(other.front_), back_(other.back_)
     {
         other.capacity_ = 0;
         other.size_ = 0;
