@@ -22,12 +22,13 @@ public:
     // Deletion
     T pop() override
     {
-        T returnValue = list.getHead()->data;
-
-        if(list.removeHead() == 0)
+        if(list.getCount() == 0)
         {
             throw std::runtime_error("Linked-List Stack is empty.");
         }
+
+        T returnValue = list.getHead()->data;
+        list.removeHead();
 
         return returnValue;
     }
