@@ -155,9 +155,12 @@ public:
                     temp[i] = array_[i];
                 }
 
+                T returnValue = array_[curr_size_];
                 delete[] array_;
                 array_ = temp;
                 temp = nullptr;
+
+                return returnValue;
             }
 
             return array_[curr_size_];
