@@ -144,7 +144,7 @@ public:
         return 1;
 
     }
-	void Clear()
+	void clear()
     {
         Node<T>* current = head;
         Node<T>* next = nullptr;
@@ -192,7 +192,7 @@ public:
         Node<T>* current = rhs.head;
         for(size_t i = 0; i < rhs.count; i++)
         {
-            AddTail(current->data);
+            addTail(current->data);
             current = current->next;
         }
 
@@ -208,7 +208,7 @@ public:
         this->count = 0;
         for(size_t i = 0; i < list.count; i++)
         {
-            AddTail(current->data);
+            addTail(current->data);
             current = current->next;
         }
     }
@@ -220,7 +220,7 @@ public:
     }
 	~LinkedList()
     {
-        Clear();
+        clear();
     }
 
 private:
