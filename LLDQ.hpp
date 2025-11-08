@@ -56,10 +56,20 @@ public:
     // Element Accessors
     const T& front() const override
     {
+        if(list.getCount() == 0)
+        {
+            throw std::runtime_error("Linked-List Deque is empty.");
+        }
+
         return list.getHead();
     }
     const T& back() const override
     {
+        if(list.getCount() == 0)
+        {
+            throw std::runtime_error("Linked-List Deque is empty.");
+        }
+
         return list.getTail();
     }
 
