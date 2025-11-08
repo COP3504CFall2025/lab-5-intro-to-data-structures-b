@@ -108,6 +108,7 @@ public:
                 temp[i] = array_[i];
             }
 
+            delete[] array_;
             array_ = temp;
             temp = nullptr;
 
@@ -139,6 +140,26 @@ public:
         else
         {
             curr_size_--;
+
+            if(curr_size_ <= capacity_/4)
+            {
+                capacity_ /= 2;
+                if(capacity_ < 1)
+                {
+                    capacity_ = 1;
+                }
+
+                T* temp = new T[capacity_];
+                for(size_t i = 0; i < curr_size_; i++)
+                {
+                    temp[i] = array_[i];
+                }
+
+                delete[] array_;
+                array_ = temp;
+                temp = nullptr;
+            }
+
             return array_[curr_size_];
         }
     }
