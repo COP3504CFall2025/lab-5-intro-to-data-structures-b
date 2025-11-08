@@ -144,8 +144,8 @@ public:
         }
         else
         {
-            T returnValue = array_[0];
             curr_size_--;
+            T returnValue = array_[0];
 
             if(curr_size_ <= capacity_/4)
             {
@@ -154,24 +154,10 @@ public:
                 {
                     capacity_ = 1;
                 }
-
-                T* temp = new T[capacity_];
-                for(size_t i = 1; i < curr_size_; i++)
-                {
-                    temp[i - 1] = array_[i];
-                }
-
-                delete[] array_;
-                array_ = temp;
-                temp = nullptr;
-
-                return returnValue;
             }
 
-            T returnvalue = array_[0];
-
             T* temp = new T[capacity_];
-            for(size_t i = 1; i < curr_size_; i++)
+            for(size_t i = 1; i < curr_size_ + 1; i++)
             {
                 temp[i - 1] = array_[i];
             }
@@ -180,7 +166,7 @@ public:
             array_ = temp;
             temp = nullptr;
 
-            return returnvalue;
+            return returnValue;
         }
     }
 
