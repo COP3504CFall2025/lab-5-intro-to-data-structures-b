@@ -19,10 +19,12 @@ public:
 template <typename T>
 class QueueInterface
 {
-    void enqueue(const T& item) = 0;
-    T dequeue() = 0;
-    T peek() const = 0;
-    std::size_t getSize() const noexcept = 0;
+public:
+    virtual ~QueueInterface() = default;
+    virtual void enqueue(const T& item) = 0;
+    virtual T dequeue() = 0;
+    virtual T peek() const = 0;
+    virtual std::size_t getSize() const noexcept = 0;
 };
 
 
