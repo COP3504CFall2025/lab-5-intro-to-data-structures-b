@@ -18,8 +18,8 @@ private:
 
 public:
     //Constructors
-    ABDQ() : data_(new T[capacity_]), capacity_(4), size_(0), front_(0), back_(0) {}
-    explicit ABDQ(std::size_t capacity) : data_(new T[capacity_]), capacity_(capacity), size_(0), front_(0), back_(0) {}
+    ABDQ() : data_(new T[4]), capacity_(4), size_(0), front_(0), back_(0) {}
+    explicit ABDQ(std::size_t capacity) : data_(new T[capacity]), capacity_(capacity), size_(0), front_(0), back_(0) {}
 
     //copy constructor
     ABDQ(const ABDQ& other) : data_(new T[other.capacity_]), capacity_(other.capacity_), size_(other.size_), front_(other.front_), back_(other.front_)
